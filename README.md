@@ -66,4 +66,10 @@ After the data is inserted, various SQL queries can be written to explore and an
 In advanced stages, the focus shifts to improving query performance. Some optimization strategies include:
 - **Indexing**: Adding indexes on frequently queried columns.
 - **Query Execution Plan**: Using `EXPLAIN ANALYZE` to review and refine query performance.
-  
+## 15 Practice Problems
+### Easy Level
+1. Retrieve the names of all tracks that have more than 1 billion streams.
+2. List all albums along with their respective artists.
+3. Get the total number of comments for tracks where `licensed = TRUE`.
+4. Find all tracks that belong to the album type `single`.
+5. Count the total number of tracks by each artist.
