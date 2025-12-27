@@ -69,7 +69,19 @@ In advanced stages, the focus shifts to improving query performance. Some optimi
 ## 15 Practice Problems
 ### Easy Level
 1. Retrieve the names of all tracks that have more than 1 billion streams.
+```sql
+SELECT track_name
+FROM spotify
+WHERE streams > 1000000000;
+```
 2. List all albums along with their respective artists.
-3. Get the total number of comments for tracks where `licensed = TRUE`.
-4. Find all tracks that belong to the album type `single`.
-5. Count the total number of tracks by each artist.
+```sql
+SELECT DISTINCT
+    album_name,
+    artist_name
+FROM spotify
+WHERE album_name IS NOT NULL;
+```
+4. Get the total number of comments for tracks where `licensed = TRUE`.
+5. Find all tracks that belong to the album type `single`.
+6. Count the total number of tracks by each artist.
