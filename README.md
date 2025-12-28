@@ -107,6 +107,7 @@ FROM spotify
 GROUP BY artist_name
 ORDER BY total_tracks DESC;
 ```
+### Medium Level
 6. Calculate the average danceability of tracks in each album.
 ```sql
 SELECT
@@ -155,6 +156,7 @@ WHERE streams IS NOT NULL
   AND views IS NOT NULL
   AND streams > views;
 ```
+### Advanced Level
 11. Find the top 3 most-viewed tracks for each artist using window functions.
 ```sql
 SELECT
