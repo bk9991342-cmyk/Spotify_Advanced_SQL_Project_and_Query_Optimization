@@ -107,3 +107,51 @@ FROM spotify
 GROUP BY artist_name
 ORDER BY total_tracks DESC;
 ```
+6. Calculate the average danceability of tracks in each album.
+```sql
+SELECT
+    album_name,
+    AVG(danceability) AS avg_danceability
+FROM spotify
+WHERE album_name IS NOT NULL
+GROUP BY album_name
+ORDER BY avg_danceability DESC;
+```
+7. Find the top 5 tracks with the highest energy values.
+```sql
+SELECT
+    track_name,
+    artist_name,
+    energy
+FROM spotify
+ORDER BY energy DESC
+LIMIT 5;
+```
+8. List all tracks along with their views and likes where official_video = TRUE.
+```sql
+SELECT
+    track_name,
+    views,
+    likes
+FROM spotify
+WHERE official_video = TRUE;
+```
+9. For each album, calculate the total views of all associated tracks.
+```sql
+SELECT
+    album_name,
+    SUM(views) AS total_views
+FROM spotify
+WHERE album_name IS NOT NULL
+GROUP BY album_name
+ORDER BY total_views DESC;
+```
+10. Retrieve the track names that have been streamed on Spotify more than YouTube.
+```sql
+SELECT
+    track_name
+FROM spotify
+WHERE streams IS NOT NULL
+  AND views IS NOT NULL
+  AND streams > views;
+```
