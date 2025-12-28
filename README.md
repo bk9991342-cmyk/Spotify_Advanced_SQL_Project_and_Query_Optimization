@@ -241,3 +241,39 @@ WHERE likes IS NOT NULL
   AND views IS NOT NULL
 ORDER BY views DESC;
 ```
+## Query Optimization Technique 
+To enhance query performance, we followed a structured optimization process as outlined below:
+
+- **Initial Query Performance Analysis Using `EXPLAIN`**
+    - We first evaluated the query execution plan using the `EXPLAIN` command.
+    - The query was designed to retrieve track records based on the `artist` column.
+    - The observed performance metrics before optimization were:
+         - Execution Time (E.T.): **7 ms**
+         - Planning Time (P.T.): **0.17 ms**
+    - The screenshot below illustrates the EXPLAIN output prior to applying any optimization techniques
+      ![EXPLAIN Before Index](https://github.com/bk9991342-cmyk/Spotify_Advanced_SQL_Project_and_Query_Optimization/blob/main/spotify_explain_before_index.png)
+
+- **Index Creation on the `artist` Column**
+    - To improve query execution efficiency, an index was created on the `artist` column. This indexing strategy enables faster row lookups when filtering records based on the artist attribute, reducing full table scans.
+    - **SQL command** used to create the index:
+    ```sql
+    CREATE INDEX idx_artist ON spotify_tracks(artist);
+    ```
+
+- **Performance Analysis After Index Creation**
+    - After creating the index, we ran the same query again and observed significant improvements in performance:
+        - Execution time (E.T.): **0.153 ms**
+        - Planning time (P.T.): **0.152 ms**
+    - Below is the **screenshot** of the `EXPLAIN` result after index creation:
+       ![EXPLAIN After Index](https://github.com/bk9991342-cmyk/Spotify_Advanced_SQL_Project_and_Query_Optimization/blob/main/Spotify_explain_after_index.png)
+
+- **Graphical Performance Comparison**
+    - A graph illustrating the comparison between the initial query execution time and the optimized query execution time after index creation.
+    - **Graph view** shows the significant drop in both execution and planning times:
+      ![Performance Graph](https://github.com/bk9991342-cmyk/Spotify_Advanced_SQL_Project_and_Query_Optimization/blob/main/spotify_graphical%20view%201.png)
+      ![Performance Graph](https://github.com/bk9991342-cmyk/Spotify_Advanced_SQL_Project_and_Query_Optimization/blob/main/spotify_graphical%20view%202.png)
+      ![Performance Graph](https://github.com/bk9991342-cmyk/Spotify_Advanced_SQL_Project_and_Query_Optimization/blob/main/spotify_graphical%20view%203.png)
+
+## Technology Stack
+- **Database**: mySQL
+- **SQL Queries**: DDL, DML, Aggregations, Joins, Subqueries, Window Functions
