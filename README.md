@@ -155,3 +155,87 @@ WHERE streams IS NOT NULL
   AND views IS NOT NULL
   AND streams > views;
 ```
+11. Find the top 3 most-viewed tracks for each artist using window functions.
+```sql
+SELECT
+    artist_name,
+    track_name,
+    views
+FROM (
+    SELECT
+        artist_name,
+        track_name,
+        views,
+        ROW_NUMBER() OVER (
+            PARTITION BY artist_name
+            ORDER BY views DESC
+        ) AS rn
+    FROM spotify
+    WHERE views IS NOT NULL
+) ranked_tracks
+WHERE rn <= 3
+ORDER BY artist_name, views DESC;
+```
+12. Write a query to find tracks where the liveness score is above the average.
+```sql
+SELECT
+    track_name,
+    artist_name,
+    liveness
+FROM spotify
+WHERE liveness > (
+    SELECT AVG(liveness)
+    FROM spotify
+    WHERE liveness IS NOT NULL
+);
+```
+13. Use a WITH clause to calculate the difference between the highest and lowest energy values for tracks in each album.
+```sql
+WITH album_energy AS (
+    SELECT
+        album_name,
+        MAX(energy) AS max_energy,
+        MIN(energy) AS min_energy
+    FROM spotify
+    WHERE album_name IS NOT NULL
+      AND energy IS NOT NULL
+    GROUP BY album_name
+)
+SELECT
+    album_name,
+    max_energy,
+    min_energy,
+    (max_energy - min_energy) AS energy_difference
+FROM album_energy
+ORDER BY energy_difference DESC;
+```
+14. Find tracks where the energy-to-liveness ratio is greater than 1.2.
+```sql
+SELECT
+    track_name,
+    artist_name,
+    energy,
+    liveness,
+    (energy / liveness) AS energy_liveness_ratio
+FROM spotify
+WHERE liveness IS NOT NULL
+  AND liveness > 0
+  AND energy IS NOT NULL
+  AND (energy / liveness) > 1.2;
+```
+15. Calculate the cumulative sum of likes for tracks ordered by the number of views, using window functions.
+```sql
+SELECT
+    track_name,
+    artist_name,
+    views,
+    likes,
+    SUM(likes) OVER (
+        ORDER BY views DESC
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS cumulative_likes
+FROM spotify
+WHERE likes IS NOT NULL
+  AND views IS NOT NULL
+ORDER BY views DESC;
+```
