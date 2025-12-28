@@ -82,6 +82,28 @@ SELECT DISTINCT
 FROM spotify
 WHERE album_name IS NOT NULL;
 ```
-4. Get the total number of comments for tracks where `licensed = TRUE`.
-5. Find all tracks that belong to the album type `single`.
-6. Count the total number of tracks by each artist.
+3. Get the total number of comments for tracks where `licensed = TRUE`.
+```sql
+SELECT 
+    SUM(comments) AS total_comments
+FROM spotify
+WHERE licensed = TRUE;
+```
+4. Find all tracks that belong to the album type `single`.
+ ```sql
+SELECT 
+    track_name,
+    artist_name,
+    album_name
+FROM spotify
+WHERE album_type = 'single';
+```
+5. Count the total number of tracks by each artist.
+```sql
+SELECT 
+    artist_name,
+    COUNT(track_name) AS total_tracks
+FROM spotify
+GROUP BY artist_name
+ORDER BY total_tracks DESC;
+```
