@@ -1,5 +1,6 @@
 # Spotify_Advanced_SQL_Project_and_Query_Optimizations
 ![Spotify_img](https://github.com/bk9991342-cmyk/Spotify_Advanced_SQL_Project_and_Query_Optimization/blob/main/spotify_img1.webp)
+
 ## Overview
 This project focuses on analyzing a Spotify dataset containing detailed information about tracks, albums, and artists using SQL. It demonstrates an end-to-end workflow, starting from normalizing a denormalized dataset into well-structured relational tables, followed by executing SQL queries of varying complexity (basic, intermediate, and advanced). The project also emphasizes query optimization techniques to improve performance. The key objective is to strengthen advanced SQL skills while extracting meaningful insights related to music trends, artist performance, and track characteristics.
 ```sql
@@ -277,3 +278,6 @@ To enhance query performance, we followed a structured optimization process as o
 ## Technology Stack
 - **Database**: mySQL
 - **SQL Queries**: DDL, DML, Aggregations, Joins, Subqueries, Window Functions
+
+## Conclusion
+In this project, I analyzed a Spotify dataset using SQL. I cleaned and structured the data, wrote complex queries, and used window functions and CTEs to find insights about songs, artists, and albums. This project helped me improve my advanced SQL skills and understand how SQL is used in real-world data analysis.
